@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Tamed</string>
+    <string name="action_settings">Settings</string>
+    <string name="flexible_title">Flexible space</string>
+    	<string name="lorem">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		In mollis est vitae erat laoreet consectetur. Mauris dui mauris,
+		dictum vel egestas vel, porta sed ante. Phasellus congue viverra ipsum,
+		in elementum arcu ultricies nec.Morbi tincidunt nisl lacinia, placerat nisi eget, luctus tortor.
+		Morbi efficitur dictum leo, sit amet volutpat lorem sodales nec. Quisque et erat et turpis fringilla condimentum.
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris auctor vulputate libero vitae iaculis.
+		Curabitur id blandit quam. Praesent massa ante, pulvinar vitae sagittis commodo, scelerisque porttitor eros.
+		Mauris suscipit a enim nec congue. Mauris tristique cursus aliquet. Nunc quis hendrerit nunc. Praesent tristique tellus purus,
+		a pretium ex gravida id. Cras laoreet malesuada nulla, at bibendum metus ultricies a. Fusce eu ornare arcu. Proin ut molestie est.
+		Vestibulum quis vehicula erat. Nam sed tempus nibh. Sed tortor ante, maximus venenatis odio sed, ultricies maximus lectus.
+		Aliquam sed volutpat ligula. Integer bibendum, magna ac lacinia suscipit,
+		risus libero rutrum justo, sed tempus augue tellus eget est. Curabitur convallis augue nisl,
+		id efficitur urna posuere faucibus. Ut sed egestas nulla, eu finibus metus. Nunc a arcu ante.
+		Aenean ullamcorper dolor non condimentum congue. Aenean mauris nunc, pellentesque at placerat vitae,
+		aliquet quis orci. Curabitur maximus augue ut bibendum sagittis.
+	</string>
+		<string name="german">
+		The German Shepherd is a breed of medium to large-sized working dog that originated in Germany.
+		The breeds officially recognized name is German Shepherd Dog in the English language, sometimes
+        abbreviated as GSD and was also formerly known as the Alsatian in Britain.[8]
+        The German Shepherd is a relatively new breed of dog, with their origin dating to 1899.
+		As part of the Herding Group, German Shepherds are working dogs developed originally for herding sheep.
+		Since that time, however, because of their strength, intelligence, trainability and obedience,
+		German Shepherds around the world are often the preferred breed for many types of work,
+		including disability assistance, search-and-rescue, police and military roles, and even acting
+	</string>
+	<string name="ped">
+		Pedigree Petfoods is a subsidiary of the American group Mars, Incorporated specializing in pet food,
+		with factories in England at Melton Mowbray and Birstall, Leeds; and offices at McLean, Virginia.
+		In 1951, annual sales reached Â£1m, and the company moved to Melton Mowbray, using a former sewing-thread mill
+		previously used by Patons and Baldwins. In 1953, the company operated seven days a week, twenty four hours a day
+		on a shift system.[1] A continuous sterilisation process was introduced instead of batch processing.
+		New dog food brands Pal and Lassie were introduced during the 1950s.[2] Due to making more than the Chappie product,
+		the company name changed to Petfoods Ltd in 1956. In 1972, this became Pedigree Petfoods Ltd.
+		A new factory on Shrewsbury Avenue in Woodston, Peterborough opened in October 1974 which originally
+		produced semi-moist products such as Bounce
+	</string>
+    <string name="text_header">Text</string>
+</resources>

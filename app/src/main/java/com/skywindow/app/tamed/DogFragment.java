@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.widget.LinearLayoutManager;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +15,15 @@ import java.util.List;
  */
 public class DogFragment extends Fragment {
 
-    private List<NewsItem> newsItems;
+    public static final int NEWS = 0;
+    public static final int SHOP = 1;
+    public static final int VET = 2;
+    public static final int FORUM = 3;
+
+    private List<InformationItem> infoItems;
     private RecyclerView rv;
+    private int infoTypes[] = {NEWS,SHOP,VET,FORUM}; //view types
+
 
     public DogFragment() {
         // Required empty public constructor
@@ -36,7 +42,7 @@ public class DogFragment extends Fragment {
         rv = (RecyclerView)_dogView.findViewById(R.id.tamedapp_main_news);
         rv.setHasFixedSize(false);
 
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        LinearLayoutManager llm = new LinearLayoutManager(rv.getContext());
         rv.setLayoutManager(llm);
 
 
@@ -47,14 +53,26 @@ public class DogFragment extends Fragment {
     }
 
     private void initializeData(){
-        newsItems = new ArrayList<>();
-        newsItems.add(new NewsItem("In Memory of Diesel: Russia Sends Puppy to France to Express Solidarity",R.string.german,R.drawable.german));
-        newsItems.add(new NewsItem("Check this new product from pedigree",R.string.ped,R.drawable.ped));
+        infoItems = new ArrayList<>();
+
+        NewsItem _newsItem= new NewsItem("In Memory of Diesel: Russia Sends Puppy to France to Express Solidarity",R.string.german,R.drawable.german);
+        infoItems.add(_newsItem);
+
+        ShopItem _shopitem=new ShopItem("This is Shop section");
+        infoItems.add(_shopitem);
+
+        VetItem _vetItem=new VetItem("This is vet section");
+        infoItems.add(_vetItem);
+
+        ForumItem _forumItem=new ForumItem("This is Forum section");
+        infoItems.add(_forumItem);
+
+
 
     }
 
     private void initializeAdapter(){
-        NewsAdapter adapter = new NewsAdapter(newsItems);
+        InformationAdapter adapter = new InformationAdapter(infoItems,infoTypes);
         rv.setAdapter(adapter);
     }
 

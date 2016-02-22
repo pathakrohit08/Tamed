@@ -16,8 +16,15 @@ import java.util.List;
  */
 public class FishFragment extends Fragment {
 
-    private List<NewsItem> newsItems;
+    public static final int NEWS = 0;
+    public static final int SHOP = 1;
+    public static final int VET = 2;
+    public static final int FORUM = 3;
+
+    private List<InformationItem> infoItems;
     private RecyclerView rv;
+    private int infoTypes[] = {NEWS,SHOP,VET,FORUM}; //view types
+
 
     public FishFragment() {
         // Required empty public constructor
@@ -32,29 +39,41 @@ public class FishFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View _catView=inflater.inflate(R.layout.fragment_news, container, false);
-        rv = (RecyclerView)_catView.findViewById(R.id.tamedapp_main_news);
+        View _dogView=inflater.inflate(R.layout.fragment_news, container, false);
+        rv = (RecyclerView)_dogView.findViewById(R.id.tamedapp_main_news);
         rv.setHasFixedSize(false);
 
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        LinearLayoutManager llm = new LinearLayoutManager(rv.getContext());
         rv.setLayoutManager(llm);
 
 
         initializeData();
         initializeAdapter();
 
-        return _catView;
+        return _dogView;
     }
 
     private void initializeData(){
-        newsItems = new ArrayList<>();
-        newsItems.add(new NewsItem("Gold fish.Is it really made of gold?Why don't you find for yourself",R.string.german,R.drawable.fish_new));
-        newsItems.add(new NewsItem("Check this new product from pedigree",R.string.ped,R.drawable.ped));
+        infoItems = new ArrayList<>();
+
+        NewsItem _newsItem= new NewsItem("In Memory of Diesel: Russia Sends Puppy to France to Express Solidarity",R.string.german,R.drawable.fish);
+        infoItems.add(_newsItem);
+
+        ShopItem _shopitem=new ShopItem("This is Shop section");
+        infoItems.add(_shopitem);
+
+        VetItem _vetItem=new VetItem("This is vet section");
+        infoItems.add(_vetItem);
+
+        ForumItem _forumItem=new ForumItem("This is Forum section");
+        infoItems.add(_forumItem);
+
+
 
     }
 
     private void initializeAdapter(){
-        NewsAdapter adapter = new NewsAdapter(newsItems);
+        InformationAdapter adapter = new InformationAdapter(infoItems,infoTypes);
         rv.setAdapter(adapter);
     }
 

@@ -22,28 +22,11 @@
         >
 
         <TextView
-            android:id="@+id/item.news.newsHeader"
+            android:id="@+id/sampleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:textStyle="bold"
-            />
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:id="@+id/item.news.newsImage"
-            />
-
-        <TextView
-            android:id="@+id/item.news.newsDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:lineSpacingExtra="8dp"
-            android:textSize="16sp"
-            android:text="@string/lorem"
             />
 
         <Button

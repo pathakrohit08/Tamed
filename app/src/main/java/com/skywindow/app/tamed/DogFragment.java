@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by rohit.arun.pathak on 2/19/2016.
  */
-public class DogFragment extends Fragment {
+public class DogFragment extends Fragment implements ShoppingImageViewAdapter.OnItemClickListener{
 
     public static final int NEWS = 0;
     public static final int SHOP = 1;
@@ -23,10 +23,19 @@ public class DogFragment extends Fragment {
     private List<InformationItem> infoItems;
     private RecyclerView rv;
     private int infoTypes[] = {NEWS,SHOP,VET,FORUM}; //view types
+    MainActivity mainActivity;
+    private ShoppingImageViewAdapter shoppingImageViewAdapter;
+    private LinearLayoutManager linearLayoutManager;
+
 
 
     public DogFragment() {
         // Required empty public constructor
+    }
+
+    public DogFragment(MainActivity act)
+    {
+        this.mainActivity=act;
     }
 
     @Override
@@ -58,8 +67,15 @@ public class DogFragment extends Fragment {
         NewsItem _newsItem= new NewsItem("In Memory of Diesel: Russia Sends Puppy to France to Express Solidarity",R.string.german,R.drawable.german);
         infoItems.add(_newsItem);
 
-        ShopItem _shopitem=new ShopItem("This is Shop section");
+
+        linearLayoutManager =
+                new LinearLayoutManager(mainActivity.getBaseContext(), LinearLayoutManager.HORIZONTAL, false);
+        shoppingImageViewAdapter = new ShoppingImageViewAdapter(mainActivity.getBaseContext(), mainActivity);
+        shoppingImageViewAdapter.setOnItemClickListener(this);
+
+        ShopItem _shopitem=new ShopItem(shoppingImageViewAdapter,linearLayoutManager);
         infoItems.add(_shopitem);
+
 
         VetItem _vetItem=new VetItem("This is vet section");
         infoItems.add(_vetItem);
@@ -71,9 +87,17 @@ public class DogFragment extends Fragment {
 
     }
 
+
     private void initializeAdapter(){
-        InformationAdapter adapter = new InformationAdapter(infoItems,infoTypes);
+        InformationAdapter adapter = new InformationAdapter(infoItems,infoTypes,mainActivity);
         rv.setAdapter(adapter);
+    }
+
+    @Override
+    public void onItemClick(ShoppingImageViewAdapter.ItemHolder item, int position) {
+
+        String stringitemUri = item.getItemUri();
+
     }
 
 }

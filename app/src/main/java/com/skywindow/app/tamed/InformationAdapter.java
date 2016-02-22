@@ -1,6 +1,9 @@
 package com.skywindow.app.tamed;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,16 +12,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.FileNotFoundException;
 import java.util.List;
-/**
- * Created by Rohit on 2/20/2016.
- */
+
 public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.InformationViewHolder> {
 
     public static final int NEWS = 0;
     public static final int SHOP = 1;
     public static final int VET = 2;
     public static final int FORUM = 3;
+
+    public static MainActivity mainActivity;
+
+    public static final String[] IMAGE_NAME = {"image1", "image2", "image3", "image4", "image5", "image6","image7", "image8", "image9", "image10", "image11"};
+
+
+   
 
     public static class InformationViewHolder extends RecyclerView.ViewHolder {
 
@@ -45,11 +54,14 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
 
     public static class ShopViewHolder extends InformationViewHolder {
 
-        TextView temp;
+
+       RecyclerView rview;
         ShopViewHolder(View itemView) {
             super(itemView);
-            this.temp = (TextView)itemView.findViewById(R.id.sampleText);
+            rview=(RecyclerView)itemView.findViewById(R.id.myrecyclerview);
+
         }
+
     }
 
     public static class VetViewHolder extends InformationViewHolder {
@@ -73,9 +85,10 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     List<InformationItem> infoItems;
     private int[] infoTypes;
 
-    InformationAdapter(List<InformationItem> infoItems, int[] infoTypes){
+    InformationAdapter(List<InformationItem> infoItems, int[] infoTypes,MainActivity activity){
         this.infoItems = infoItems;
         this.infoTypes = infoTypes;
+        this.mainActivity = activity;
     }
 
     @Override
@@ -121,9 +134,13 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
             holder.newsPhoto.setImageResource(_weatherItem.itemPhoto);
 
         } else if (informationViewHolder.getItemViewType() == SHOP) {
+
             ShopViewHolder holder = (ShopViewHolder) informationViewHolder;
-            ShopItem _weather=(ShopItem)infoItems.get(position);
-            holder.temp.setText(_weather.itemHeader);
+            ShopItem _weatherItem=(ShopItem)infoItems.get(position);
+            holder.rview.setAdapter(_weatherItem.myadapter);
+            holder.rview.setLayoutManager(_weatherItem.layoutManager);
+            prepareGallery(_weatherItem.myadapter);
+
         }
         else if (informationViewHolder.getItemViewType() == VET) {
             VetViewHolder holder = (VetViewHolder) informationViewHolder;
@@ -137,6 +154,15 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
         }
     }
 
+    private void prepareGallery(ShoppingImageViewAdapter adapter){
+
+        for (String file : IMAGE_NAME){
+            int imgResId = mainActivity.getResources().getIdentifier(file, "drawable", "com.skywindow.app.tamed");
+            Uri path = Uri.parse("android.resource://com.skywindow.app.tamed/" + imgResId);
+            adapter.add(adapter.getItemCount(),path);
+        }
+    }
+
     @Override
     public int getItemCount() {
         return infoItems.size();
@@ -145,6 +171,60 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     @Override
     public int getItemViewType(int position) {
         return infoTypes[position];
+    }
+
+
+    private Bitmap loadScaledBitmap(Uri src) throws FileNotFoundException {
+
+
+
+        // required max width/height
+        final int REQ_WIDTH = 150;
+        final int REQ_HEIGHT = 150;
+
+        Bitmap bm = null;
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeStream(mainActivity.getBaseContext().getContentResolver().openInputStream(src),
+                null, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, REQ_WIDTH,
+                REQ_HEIGHT);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        bm = BitmapFactory.decodeStream(
+                mainActivity.getBaseContext().getContentResolver().openInputStream(src), null, options);
+
+        return bm;
+    }
+
+    public int calculateInSampleSize(BitmapFactory.Options options,
+                                     int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            // Calculate ratios of height and width to requested height and
+            // width
+            final int heightRatio = Math.round((float) height
+                    / (float) reqHeight);
+            final int widthRatio = Math.round((float) width / (float) reqWidth);
+
+            // Choose the smallest ratio as inSampleSize value, this will
+            // guarantee
+            // a final image with both dimensions larger than or equal to the
+            // requested height and width.
+            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+        }
+
+        return inSampleSize;
     }
 }
 

@@ -18,13 +18,14 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
-        implements AppBarLayout.OnOffsetChangedListener{
+        implements AppBarLayout.OnOffsetChangedListener {
 
 
     private int mMaxScrollSize;
@@ -122,10 +123,7 @@ public class MainActivity extends AppCompatActivity
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new DogFragment(), "DOG");
-        adapter.addFragment(new CatFragment(), "CAT");
-        adapter.addFragment(new BirdFragment(), "BIRD");
-        adapter.addFragment(new FishFragment(), "FISH");
+        adapter.addFragment(new DogFragment(this), "DOG");
 
         viewPager.setAdapter(adapter);
     }
@@ -210,4 +208,6 @@ public class MainActivity extends AppCompatActivity
     public static void start(Context c) {
         c.startActivity(new Intent(c, MainActivity.class));
     }
+
+
 }

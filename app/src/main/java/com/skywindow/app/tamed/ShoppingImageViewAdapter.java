@@ -22,12 +22,12 @@ public class ShoppingImageViewAdapter extends RecyclerView.Adapter<ShoppingImage
     private OnItemClickListener onItemClickListener;
     MainActivity mainActivity;
 
-    public ShoppingImageViewAdapter(Context context, MainActivity mainActivity){
+    public ShoppingImageViewAdapter(Context context){
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
         itemsUri = new ArrayList<Uri>();
 
-        this.mainActivity = mainActivity;
+
     }
 
     @Override

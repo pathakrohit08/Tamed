@@ -1,6 +1,7 @@
 package com.skywindow.app.tamed;
 
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -22,8 +23,8 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     public static final int VET = 2;
     public static final int FORUM = 3;
 
-    public static MainActivity mainActivity;
 
+    public static Context baseContext;
     public static final String[] IMAGE_NAME = {"image1", "image2", "image3", "image4", "image5", "image6","image7", "image8", "image9", "image10", "image11"};
 
 
@@ -85,10 +86,11 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     List<InformationItem> infoItems;
     private int[] infoTypes;
 
-    InformationAdapter(List<InformationItem> infoItems, int[] infoTypes,MainActivity activity){
+    InformationAdapter(List<InformationItem> infoItems, int[] infoTypes,Context baseContext){
         this.infoItems = infoItems;
         this.infoTypes = infoTypes;
-        this.mainActivity = activity;
+        this.baseContext=baseContext;
+
     }
 
     @Override
@@ -157,7 +159,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     private void prepareGallery(ShoppingImageViewAdapter adapter){
 
         for (String file : IMAGE_NAME){
-            int imgResId = mainActivity.getResources().getIdentifier(file, "drawable", "com.skywindow.app.tamed");
+            int imgResId = baseContext.getResources().getIdentifier(file, "drawable", "com.skywindow.app.tamed");
             Uri path = Uri.parse("android.resource://com.skywindow.app.tamed/" + imgResId);
             adapter.add(adapter.getItemCount(),path);
         }
@@ -187,7 +189,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
         // First decode with inJustDecodeBounds=true to check dimensions
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
-        BitmapFactory.decodeStream(mainActivity.getBaseContext().getContentResolver().openInputStream(src),
+        BitmapFactory.decodeStream(baseContext.getContentResolver().openInputStream(src),
                 null, options);
 
         // Calculate inSampleSize
@@ -197,7 +199,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
         // Decode bitmap with inSampleSize set
         options.inJustDecodeBounds = false;
         bm = BitmapFactory.decodeStream(
-                mainActivity.getBaseContext().getContentResolver().openInputStream(src), null, options);
+                baseContext.getContentResolver().openInputStream(src), null, options);
 
         return bm;
     }

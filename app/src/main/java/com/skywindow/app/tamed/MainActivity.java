@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new DogFragment(this), "DOG");
+        adapter.addFragment(new DogFragment(), "DOG");
 
         viewPager.setAdapter(adapter);
     }

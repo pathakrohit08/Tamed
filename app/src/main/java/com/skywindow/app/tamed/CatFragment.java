@@ -2,20 +2,21 @@ package com.skywindow.app.tamed;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v7.widget.LinearLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by rohit.arun.pathak on 2/19/2016.
  */
 
 /*Add Log to the code*/
-public class DogFragment extends Fragment implements ShoppingImageViewAdapter.OnItemClickListener{
+public class CatFragment extends Fragment implements ShoppingImageViewAdapter.OnItemClickListener{
 
     public static final int NEWS = 0;
     public static final int SHOP = 1;
@@ -30,7 +31,7 @@ public class DogFragment extends Fragment implements ShoppingImageViewAdapter.On
     private ShoppingImageViewAdapter shoppingImageViewAdapter;
 
 
-    public DogFragment() {
+    public CatFragment() {
         // Required empty public constructor
     }
 

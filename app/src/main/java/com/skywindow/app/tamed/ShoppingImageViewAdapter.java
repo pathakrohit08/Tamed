@@ -5,11 +5,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ public class ShoppingImageViewAdapter extends RecyclerView.Adapter<ShoppingImage
 
     private List<ShopItem> shoppingItems;
     private LayoutInflater layoutInflater;
-    private Context context;
+    private static Context context;
     private OnItemClickListener onItemClickListener;
 
 
@@ -149,7 +151,7 @@ public class ShoppingImageViewAdapter extends RecyclerView.Adapter<ShoppingImage
 
         public ItemHolder(View cardView, ShoppingImageViewAdapter parent) {
             super(cardView);
-            itemView.setOnClickListener(this);
+           // itemView.setOnClickListener(this);
             this.cardView = cardView;
             this.parent = parent;
             imageView = (ImageView) cardView.findViewById(R.id.item_image);
@@ -173,8 +175,10 @@ public class ShoppingImageViewAdapter extends RecyclerView.Adapter<ShoppingImage
 
         @Override
         public void onClick(View v) {
+            Toast.makeText(context,"Reac",Toast.LENGTH_SHORT).show();
             final OnItemClickListener listener = parent.getOnItemClickListener();
             if(listener != null){
+
                 listener.onItemClick(this, getLayoutPosition());
                 //or use
                 //listener.onItemClick(this, getAdapterPosition());

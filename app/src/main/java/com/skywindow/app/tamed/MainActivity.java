@@ -14,6 +14,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.AppBarLayout;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,7 +28,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements AppBarLayout.OnOffsetChangedListener {
 
-
+    Toolbar toolbar;
     private int mMaxScrollSize;
     private static final int PERCENTAGE_TO_SHOW_IMAGE = 20;
     private boolean mIsImageHidden;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tamedapp_main_toolbar);
+        toolbar = (Toolbar) findViewById(R.id.tamedapp_main_toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,12 +84,16 @@ public class MainActivity extends AppCompatActivity
 
                 CharSequence _header = tab.getText();
                 Selected_Tab_Header = String.valueOf(_header);
-                collapsingToolbarLayout.setTitle(Selected_Tab_Header);
+                //collapsingToolbarLayout.setTitle(Selected_Tab_Header);
+
+
+
                 if (Selected_Tab_Header == "DOG") {
                     headerImage.setImageResource(R.drawable.dog);
                 }
                 if (Selected_Tab_Header == "BIRD") {
                     headerImage.setImageResource(R.drawable.bird);
+
                 }
                 if (Selected_Tab_Header == "CAT") {
                     headerImage.setImageResource(R.drawable.cat);
@@ -105,7 +110,6 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
         });
 
@@ -116,7 +120,7 @@ public class MainActivity extends AppCompatActivity
     private void SetInitialData() {
 
         Selected_Tab_Header="DOG";
-        collapsingToolbarLayout.setTitle(Selected_Tab_Header);
+        //collapsingToolbarLayout.setTitle(Selected_Tab_Header);
         headerImage.setImageResource(R.drawable.dog);
     }
 
@@ -124,38 +128,16 @@ public class MainActivity extends AppCompatActivity
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new DogFragment(), "DOG");
+        adapter.addFragment(new CatFragment(), "CAT");
+        adapter.addFragment(new CatFragment(), "BIRD");
+        adapter.addFragment(new CatFragment(), "FISH");
+
+
 
         viewPager.setAdapter(adapter);
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -180,6 +162,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
+
+
         if (mMaxScrollSize == 0)
             mMaxScrollSize = appBarLayout.getTotalScrollRange();
 
@@ -189,18 +173,12 @@ public class MainActivity extends AppCompatActivity
         if (currentScrollPercentage >= PERCENTAGE_TO_SHOW_IMAGE) {
             if (!mIsImageHidden) {
                 mIsImageHidden = true;
-
-                //collapsingToolbarLayout.setTitle(Selected_Tab_Header);
-                //ViewCompat.animate(mFab).scaleY(0).scaleX(0).start();
             }
         }
 
         if (currentScrollPercentage < PERCENTAGE_TO_SHOW_IMAGE) {
             if (mIsImageHidden) {
                 mIsImageHidden = false;
-
-
-                //ViewCompat.animate(mFab).scaleY(1).scaleX(1).start();
             }
         }
     }
@@ -208,6 +186,8 @@ public class MainActivity extends AppCompatActivity
     public static void start(Context c) {
         c.startActivity(new Intent(c, MainActivity.class));
     }
+
+
 
 
 }

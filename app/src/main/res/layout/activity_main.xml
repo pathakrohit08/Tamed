@@ -20,11 +20,10 @@
             android:id="@+id/tamedapp.main.collapsing"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            app:title="@string/flexible_title"
             app:expandedTitleMarginBottom="78dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:expandedTitleTextAppearance="@style/CollapsingTextAppearance.Inverse"
-            app:contentScrim="?colorPrimary">
+            app:contentScrim="@android:color/transparent">
 
             <ImageView
                 android:id="@+id/tamedapp.main.image"
@@ -41,6 +40,7 @@
                 android:layout_gravity="top"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:background="@android:color/transparent"
+                app:layout_collapseMode="pin"
                 />
             <android.support.v7.widget.Toolbar
                 android:id="@+id/tamedapp.main.toolbar"
@@ -48,7 +48,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:background="@android:color/transparent"
-                app:layout_collapseMode="pin"/>
+                app:layout_collapseMode="none"/>
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>

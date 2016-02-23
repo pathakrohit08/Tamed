@@ -30,8 +30,10 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
 
     public static class InformationViewHolder extends RecyclerView.ViewHolder {
 
-        public InformationViewHolder(View v) {
-            super(v);
+        public InformationViewHolder(View itemView) {
+            super(itemView);
+            itemView.setClickable(true);
+
         }
     }
 
@@ -48,6 +50,9 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
             newsHeader = (TextView)itemView.findViewById(R.id.item_news_newsHeader);
             newsDescription = (TextView)itemView.findViewById(R.id.item_news_newsDescription);
             newsPhoto = (ImageView)itemView.findViewById(R.id.item_news_newsImage);
+
+            itemView.setClickable(true);
+
         }
     }
 

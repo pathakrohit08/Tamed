@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -23,9 +24,9 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     public static final int VET = 2;
     public static final int FORUM = 3;
 
-
+    private boolean IsViewLoaded;
     public static Context baseContext;
-    public static final String[] IMAGE_NAME = {"image1", "image2", "image3", "image4", "image5", "image6","image7", "image8", "image9", "image10", "image11"};
+    public static final String[] IMAGE_NAME = {"ped","bird","fish"};
 
 
    
@@ -158,11 +159,17 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
 
     private void prepareGallery(ShoppingImageViewAdapter adapter){
 
-        for (String file : IMAGE_NAME){
-            int imgResId = baseContext.getResources().getIdentifier(file, "drawable", "com.skywindow.app.tamed");
-            Uri path = Uri.parse("android.resource://com.skywindow.app.tamed/" + imgResId);
-            adapter.add(adapter.getItemCount(),path);
+        if(IsViewLoaded==false) {
+            for (String file : IMAGE_NAME) {
+                int imgResId = baseContext.getResources().getIdentifier(file, "drawable", "com.skywindow.app.tamed");
+                Uri path = Uri.parse("android.resource://com.skywindow.app.tamed/" + imgResId);
+                adapter.add(adapter.getItemCount(), path);
+            }
+
+
+            IsViewLoaded = true;
         }
+
     }
 
     @Override
@@ -176,57 +183,5 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     }
 
 
-    private Bitmap loadScaledBitmap(Uri src) throws FileNotFoundException {
-
-
-
-        // required max width/height
-        final int REQ_WIDTH = 150;
-        final int REQ_HEIGHT = 150;
-
-        Bitmap bm = null;
-
-        // First decode with inJustDecodeBounds=true to check dimensions
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeStream(baseContext.getContentResolver().openInputStream(src),
-                null, options);
-
-        // Calculate inSampleSize
-        options.inSampleSize = calculateInSampleSize(options, REQ_WIDTH,
-                REQ_HEIGHT);
-
-        // Decode bitmap with inSampleSize set
-        options.inJustDecodeBounds = false;
-        bm = BitmapFactory.decodeStream(
-                baseContext.getContentResolver().openInputStream(src), null, options);
-
-        return bm;
-    }
-
-    public int calculateInSampleSize(BitmapFactory.Options options,
-                                     int reqWidth, int reqHeight) {
-        // Raw height and width of image
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-
-        if (height > reqHeight || width > reqWidth) {
-
-            // Calculate ratios of height and width to requested height and
-            // width
-            final int heightRatio = Math.round((float) height
-                    / (float) reqHeight);
-            final int widthRatio = Math.round((float) width / (float) reqWidth);
-
-            // Choose the smallest ratio as inSampleSize value, this will
-            // guarantee
-            // a final image with both dimensions larger than or equal to the
-            // requested height and width.
-            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
-        }
-
-        return inSampleSize;
-    }
 }
 

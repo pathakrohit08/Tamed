@@ -20,7 +20,7 @@ public class ShoppingImageViewAdapter extends RecyclerView.Adapter<ShoppingImage
     private LayoutInflater layoutInflater;
     private Context context;
     private OnItemClickListener onItemClickListener;
-    MainActivity mainActivity;
+
 
     public ShoppingImageViewAdapter(Context context){
         this.context = context;
@@ -52,11 +52,7 @@ public class ShoppingImageViewAdapter extends RecyclerView.Adapter<ShoppingImage
         }
     }
 
-    /*
-    reference:
-    Load scaled bitmap
-    http://android-er.blogspot.com/2013/08/load-scaled-bitmap.html
-     */
+
     private Bitmap loadScaledBitmap(Uri src) throws FileNotFoundException {
 
 

@@ -3,7 +3,6 @@ package com.skywindow.app.tamed;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,8 @@ import java.util.List;
 /**
  * Created by rohit.arun.pathak on 2/19/2016.
  */
+
+/*Add Log to the code*/
 public class DogFragment extends Fragment implements ShoppingImageViewAdapter.OnItemClickListener{
 
     public static final int NEWS = 0;
@@ -24,9 +25,9 @@ public class DogFragment extends Fragment implements ShoppingImageViewAdapter.On
     private List<InformationItem> infoItems;
     private RecyclerView rv;
     private int infoTypes[] = {NEWS,SHOP,VET,FORUM}; //view types
-    MainActivity mainActivity;
-    private ShoppingImageViewAdapter shoppingImageViewAdapter;
+
     private LinearLayoutManager linearLayoutManager;
+    private ShoppingImageViewAdapter shoppingImageViewAdapter;
 
 
     public DogFragment() {
@@ -63,12 +64,15 @@ public class DogFragment extends Fragment implements ShoppingImageViewAdapter.On
 
         NewsItem _newsItem= new NewsItem("In Memory of Diesel: Russia Sends Puppy to France to Express Solidarity",R.string.german,R.drawable.german);
         infoItems.add(_newsItem);
-        Log.e("Adapter", "Reached 1");
+
+
+
         linearLayoutManager =
                 new LinearLayoutManager(getActivity().getBaseContext(), LinearLayoutManager.HORIZONTAL, false);
+
         shoppingImageViewAdapter = new ShoppingImageViewAdapter(getActivity().getBaseContext());
         shoppingImageViewAdapter.setOnItemClickListener(this);
-        Log.e("Adapter", "Reached 1.1");
+
         ShopItem _shopitem=new ShopItem(shoppingImageViewAdapter,linearLayoutManager);
         infoItems.add(_shopitem);
 
@@ -92,7 +96,7 @@ public class DogFragment extends Fragment implements ShoppingImageViewAdapter.On
     @Override
     public void onItemClick(ShoppingImageViewAdapter.ItemHolder item, int position) {
 
-        String stringitemUri = item.getItemUri();
+        /*ToDO*/
 
     }
 

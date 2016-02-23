@@ -73,7 +73,7 @@ public class DogFragment extends Fragment implements ShoppingImageViewAdapter.On
         shoppingImageViewAdapter = new ShoppingImageViewAdapter(getActivity().getBaseContext());
         shoppingImageViewAdapter.setOnItemClickListener(this);
 
-        ShopItem _shopitem=new ShopItem(shoppingImageViewAdapter,linearLayoutManager);
+        ShopMain _shopitem=new ShopMain(shoppingImageViewAdapter,linearLayoutManager);
         infoItems.add(_shopitem);
 
 

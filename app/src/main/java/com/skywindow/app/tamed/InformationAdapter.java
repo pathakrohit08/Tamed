@@ -2,8 +2,6 @@ package com.skywindow.app.tamed;
 
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -12,9 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.InformationViewHolder> {
@@ -26,8 +23,8 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
 
     private boolean IsViewLoaded;
     public static Context baseContext;
-    public static final String[] IMAGE_NAME = {"ped","bird","fish"};
-
+    public static final String[] IMAGE_NAME = {"dog_a1","dog_a2","dog_a1","dog_a3"};
+    List<ShopItem> _items;
 
    
 
@@ -109,7 +106,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
             return new NewsViewHolder(v);
         } else if (viewType == SHOP) {
             v = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.shop_item, viewGroup, false);
+                    .inflate(R.layout.shop_main, viewGroup, false);
             return new ShopViewHolder(v);
         }
         else if (viewType == VET) {
@@ -139,7 +136,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
         } else if (informationViewHolder.getItemViewType() == SHOP) {
 
             ShopViewHolder holder = (ShopViewHolder) informationViewHolder;
-            ShopItem _weatherItem=(ShopItem)infoItems.get(position);
+            ShopMain _weatherItem=(ShopMain)infoItems.get(position);
             holder.rview.setAdapter(_weatherItem.myadapter);
             holder.rview.setLayoutManager(_weatherItem.layoutManager);
             prepareGallery(_weatherItem.myadapter);
@@ -160,10 +157,24 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     private void prepareGallery(ShoppingImageViewAdapter adapter){
 
         if(IsViewLoaded==false) {
+            _items=new ArrayList<ShopItem>();
             for (String file : IMAGE_NAME) {
+                String fileName="";
+                if (file == "dog_a1") {
+                    fileName="Pedigree:Fish and chicken";
+                }
+                else if (file == "dog_a2"){
+                    fileName="Pedigree:Beef Jerky";
+                }
+                else if (file == "dog_a3"){
+                    fileName="Pedigree Adult Wet Pouch, 1.2kg";
+                }
                 int imgResId = baseContext.getResources().getIdentifier(file, "drawable", "com.skywindow.app.tamed");
                 Uri path = Uri.parse("android.resource://com.skywindow.app.tamed/" + imgResId);
-                adapter.add(adapter.getItemCount(), path);
+                ShopItem item = new ShopItem(fileName, "Price: 20$", path);
+                _items.add(item);
+
+                adapter.add(adapter.getItemCount(), item);
             }
 
 

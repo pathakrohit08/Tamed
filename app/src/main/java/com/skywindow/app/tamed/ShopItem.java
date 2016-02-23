@@ -1,18 +1,20 @@
 package com.skywindow.app.tamed;
 
-import android.support.v7.widget.LinearLayoutManager;
+import android.net.Uri;
 
 /**
  * Created by Rohit on 2/20/2016.
  */
 class ShopItem extends InformationItem {
 
-    ShoppingImageViewAdapter myadapter;
-    LinearLayoutManager layoutManager;
+    String ItemName;
+    String ItemPrice;
+    Uri ImageUri;
 
-    ShopItem(ShoppingImageViewAdapter adapter,LinearLayoutManager lmanager) {
-        this.myadapter=adapter;
-        this.layoutManager=lmanager;
+    ShopItem(String itemName, String itemPrice,Uri imageID) {
+        this.ItemName=itemName;
+        this.ItemPrice=itemPrice;
+        this.ImageUri =imageID;
 
     }
 }

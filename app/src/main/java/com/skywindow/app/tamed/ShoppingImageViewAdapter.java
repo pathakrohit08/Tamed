@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class ShoppingImageViewAdapter extends RecyclerView.Adapter<ShoppingImageViewAdapter.ItemHolder>{
 
-    private List<Uri> itemsUri;
+    private List<ShopItem> shoppingItems;
     private LayoutInflater layoutInflater;
     private Context context;
     private OnItemClickListener onItemClickListener;
@@ -25,27 +26,27 @@ public class ShoppingImageViewAdapter extends RecyclerView.Adapter<ShoppingImage
     public ShoppingImageViewAdapter(Context context){
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
-        itemsUri = new ArrayList<Uri>();
+        shoppingItems = new ArrayList<ShopItem>();
 
 
     }
 
     @Override
     public ShoppingImageViewAdapter.ItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemCardView =layoutInflater.inflate(R.layout.shop_new, parent, false);
+        View itemCardView =layoutInflater.inflate(R.layout.shop_item, parent, false);
         return new ItemHolder(itemCardView, this);
     }
 
     @Override
     public void onBindViewHolder(ShoppingImageViewAdapter.ItemHolder holder, int position) {
-        Uri targetUri = itemsUri.get(position);
-        holder.setItemUri(targetUri.getPath());
+        ShopItem _shopItem = shoppingItems.get(position);
+        holder.setShopitem(_shopItem);
 
-        if (targetUri != null){
+        if (_shopItem != null){
 
             try {
 
-                holder.setImageView(loadScaledBitmap(targetUri));
+                holder.setImageView(loadScaledBitmap(_shopItem.ImageUri));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -107,7 +108,7 @@ public class ShoppingImageViewAdapter extends RecyclerView.Adapter<ShoppingImage
 
     @Override
     public int getItemCount() {
-        return itemsUri.size();
+        return shoppingItems.size();
     }
 
     public void setOnItemClickListener(OnItemClickListener listener){
@@ -122,16 +123,16 @@ public class ShoppingImageViewAdapter extends RecyclerView.Adapter<ShoppingImage
         public void onItemClick(ItemHolder item, int position);
     }
 
-    public void add(int location, Uri iUri){
-        itemsUri.add(location, iUri);
+    public void add(int location, ShopItem shopItem){
+        shoppingItems.add(location, shopItem);
         notifyItemInserted(location);
     }
 
     public void clearAll(){
-        int itemCount = itemsUri.size();
+        int itemCount = shoppingItems.size();
 
         if(itemCount>0){
-            itemsUri.clear();
+            shoppingItems.clear();
             notifyItemRangeRemoved(0, itemCount);
         }
     }
@@ -142,7 +143,9 @@ public class ShoppingImageViewAdapter extends RecyclerView.Adapter<ShoppingImage
         private ShoppingImageViewAdapter parent;
         private View cardView;
         ImageView imageView;
-        String itemUri;
+        ShopItem shopItem;
+        TextView itemName;
+        TextView itemPrice;
 
         public ItemHolder(View cardView, ShoppingImageViewAdapter parent) {
             super(cardView);
@@ -150,18 +153,22 @@ public class ShoppingImageViewAdapter extends RecyclerView.Adapter<ShoppingImage
             this.cardView = cardView;
             this.parent = parent;
             imageView = (ImageView) cardView.findViewById(R.id.item_image);
+            itemName=(TextView)cardView.findViewById(R.id.itemName);
+            itemPrice=(TextView)cardView.findViewById(R.id.itemPrice);
         }
 
-        public void setItemUri(String itemUri){
-            this.itemUri = itemUri;
+        public void setShopitem(ShopItem shopItem){
+            this.shopItem = shopItem;
         }
 
-        public String getItemUri(){
-            return itemUri;
+        public ShopItem getShopitem(){
+            return shopItem;
         }
 
         public void setImageView(Bitmap bitmap){
             imageView.setImageBitmap(bitmap);
+            itemName.setText(shopItem.ItemName);
+            itemPrice.setText(shopItem.ItemPrice);
         }
 
         @Override

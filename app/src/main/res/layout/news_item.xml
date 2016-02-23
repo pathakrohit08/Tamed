@@ -51,7 +51,7 @@
             android:layout_marginTop="16dp"
             android:id="@+id/read_more"
             android:background="#fff"
-            android:text="Read More" />
+            android:text="More in News..." />
     </LinearLayout>
 </android.support.v7.widget.CardView>
 

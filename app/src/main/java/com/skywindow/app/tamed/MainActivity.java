@@ -129,8 +129,8 @@ public class MainActivity extends AppCompatActivity
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new DogFragment(), "DOG");
         adapter.addFragment(new CatFragment(), "CAT");
-        adapter.addFragment(new CatFragment(), "BIRD");
-        adapter.addFragment(new CatFragment(), "FISH");
+        adapter.addFragment(new BirdFragment(), "BIRD");
+        adapter.addFragment(new FishFragment(), "FISH");
 
 
 

@@ -11,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.InformationViewHolder> {
@@ -51,6 +53,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
             newsDescription = (TextView)itemView.findViewById(R.id.item_news_newsDescription);
             newsPhoto = (ImageView)itemView.findViewById(R.id.item_news_newsImage);
 
+
             itemView.setClickable(true);
 
         }
@@ -73,16 +76,18 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
         TextView temp;
         VetViewHolder(View itemView) {
             super(itemView);
-            this.temp = (TextView)itemView.findViewById(R.id.sampleText);
+           // this.temp = (TextView)itemView.findViewById(R.id.headerText);
         }
     }
 
     public static class ForumViewHolder extends InformationViewHolder {
 
-        TextView temp;
+        TextView questionText;
+        TextView askedBy;
         ForumViewHolder(View itemView) {
             super(itemView);
-            this.temp = (TextView)itemView.findViewById(R.id.sampleText);
+            this.questionText = (TextView)itemView.findViewById(R.id.questionText);
+            this.askedBy = (TextView)itemView.findViewById(R.id.askedBy);
         }
     }
 
@@ -150,12 +155,13 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
         else if (informationViewHolder.getItemViewType() == VET) {
             VetViewHolder holder = (VetViewHolder) informationViewHolder;
             VetItem _weather=(VetItem)infoItems.get(position);
-            holder.temp.setText(_weather.itemHeader);
+           // holder.temp.setText(_weather.itemHeader);
         }
         else {
             ForumViewHolder holder = (ForumViewHolder) informationViewHolder;
             ForumItem _weather=(ForumItem)infoItems.get(position);
-            holder.temp.setText(_weather.itemHeader);
+            holder.questionText.setText(_weather.itemHeader);
+            holder.askedBy.setText("-By Wendy Cho on Sun");
         }
     }
 

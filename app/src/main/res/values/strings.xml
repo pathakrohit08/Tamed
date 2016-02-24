@@ -20,14 +20,7 @@
 		aliquet quis orci. Curabitur maximus augue ut bibendum sagittis.
 	</string>
 		<string name="german">
-		The German Shepherd is a breed of medium to large-sized working dog that originated in Germany.
-		The breeds officially recognized name is German Shepherd Dog in the English language, sometimes
-        abbreviated as GSD and was also formerly known as the Alsatian in Britain.[8]
-        The German Shepherd is a relatively new breed of dog, with their origin dating to 1899.
-		As part of the Herding Group, German Shepherds are working dogs developed originally for herding sheep.
-		Since that time, however, because of their strength, intelligence, trainability and obedience,
-		German Shepherds around the world are often the preferred breed for many types of work,
-		including disability assistance, search-and-rescue, police and military roles, and even acting
+		The little girl was in the backyard playing at the time.  The aunt turned around and took her attention off of the little girl for one second, and she managed to fall into the pool.After falling in, the aunt’s dog, who was right there the whole time, went “barking mad” in an attempt to alarm someone to what had happened.  The aunt took notice of the dog’s barking straight away.  She jumped into the pool after the little girl, pulled her out of the water to safety, and alerted neighbors to call 911.
 	</string>
 	<string name="cat">
 		After a painful breakup, many women believe they’ll never find love again. But for 48-year-old web designer Barbarella Buchner, finding another man after her seven-year relationship ended has been the last thing on her mind – because she believes she’s found happiness, companionship and emotional fulfilment with… her cats.
@@ -37,6 +30,19 @@ Incredible as it sounds, Barbarella thinks she’s found not one, but two soulma
 "They’re the loves of my life," she claims. "I have no regrets and I don’t care what people say."
 
 Cat-mad Barbarella has always been an animal lover. "As a child I was surrounded by cats," she says. "Our family regularly owned at least one or two. They were my favourite animal."
+	</string>
+	<string name="bird">
+		The sociability of swans, geese and birds of the crow family has been studied and is well understood by scientists.
+		These are large birds that tend to form stable, long-lasting bonds. This peculiarity, however, had not been observed in
+		smaller birds, such is the case with the Eurasian siskin (Carduelis spinus). A study published in Bird Study reveals
+		that this species has a tendency to travel long distances in groups over the course of several years. Up to this time,
+		researchers from the Natural Sciences Museum of Barcelona the leaders of this study had discovered that female Eurasian
+		siskins in captivity prefer to mate with males that they know. Nevertheless, the investigators still needed to prove that
+		these birds, when out in nature, do indeed live together for periods of time that are long enough for these specimens to
+		interact and to get to know each other
+	</string>
+	<string name="fish">
+		Meet the Atlantic molly an extremophile fish that lives in toxic water full of hydrogen sulfide from natural oil deposits and volcanic activity environments. A 10-year collaborative project led by biologists from Kansas State University and Washington State University has discovered how the fish can survive.The answer: Its all in the genes. The research appears in Molecular Biology and Evolution
 	</string>
     <string name="text_header">Text</string>
 </resources>

@@ -27,8 +27,7 @@ public class FishFragment extends Fragment implements ShoppingImageViewAdapter.O
     private RecyclerView rv;
     private int infoTypes[] = {NEWS,SHOP,VET,FORUM}; //view types
 
-    private LinearLayoutManager linearLayoutManager;
-    private ShoppingImageViewAdapter shoppingImageViewAdapter;
+
 
 
     public FishFragment() {
@@ -61,31 +60,7 @@ public class FishFragment extends Fragment implements ShoppingImageViewAdapter.O
     }
 
     private void initializeData(){
-        infoItems = new ArrayList<>();
-
-        NewsItem _newsItem= new NewsItem("In Memory of Diesel: Russia Sends Puppy to France to Express Solidarity",R.string.german,R.drawable.german);
-        infoItems.add(_newsItem);
-
-
-
-        linearLayoutManager =
-                new LinearLayoutManager(getActivity().getBaseContext(), LinearLayoutManager.HORIZONTAL, false);
-
-        shoppingImageViewAdapter = new ShoppingImageViewAdapter(getActivity().getBaseContext());
-       // shoppingImageViewAdapter.setOnItemClickListener(this);
-
-        ShopMain _shopitem=new ShopMain(shoppingImageViewAdapter,linearLayoutManager);
-        infoItems.add(_shopitem);
-
-
-        VetItem _vetItem=new VetItem("This is vet section");
-        infoItems.add(_vetItem);
-
-        ForumItem _forumItem=new ForumItem("This is Forum section");
-        infoItems.add(_forumItem);
-
-
-
+        infoItems = SampleData.GetFishData(getActivity().getBaseContext());
     }
 
 

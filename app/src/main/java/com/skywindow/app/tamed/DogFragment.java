@@ -73,7 +73,7 @@ public class DogFragment extends Fragment implements ShoppingImageViewAdapter.On
 
         getActivity().runOnUiThread(new Runnable() {
             public void run() {
-                Toast.makeText(getActivity().getBaseContext(), "Loading...", Toast.LENGTH_SHORT)
+                Toast.makeText(getActivity().getBaseContext(), "Done", Toast.LENGTH_SHORT)
                         .show();
                 mSwipeRefreshLayout.setRefreshing(false);
             }

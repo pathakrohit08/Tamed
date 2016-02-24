@@ -2,11 +2,13 @@ package com.skywindow.app.tamed;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,8 @@ public class BirdFragment extends Fragment implements ShoppingImageViewAdapter.O
     private List<InformationItem> infoItems;
     private RecyclerView rv;
     private int infoTypes[] = {NEWS,SHOP,VET,FORUM}; //view types
+
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
 
 
@@ -51,7 +55,13 @@ public class BirdFragment extends Fragment implements ShoppingImageViewAdapter.O
         LinearLayoutManager llm = new LinearLayoutManager(rv.getContext());
         rv.setLayoutManager(llm);
 
-
+        mSwipeRefreshLayout = (SwipeRefreshLayout)_dogView.findViewById(R.id.activity_main_swipe_refresh_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshContent();
+            }
+        });
         initializeData();
         initializeAdapter();
 
@@ -60,6 +70,20 @@ public class BirdFragment extends Fragment implements ShoppingImageViewAdapter.O
 
     private void initializeData(){
         infoItems = SampleData.GetBirdData(getActivity().getBaseContext());
+
+    }
+
+    private void refreshContent() {
+
+
+        getActivity().runOnUiThread(new Runnable() {
+            public void run() {
+                Toast.makeText(getActivity().getBaseContext(), "Done", Toast.LENGTH_SHORT)
+                        .show();
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
 
     }
 
